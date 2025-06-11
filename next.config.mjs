@@ -4,8 +4,7 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  basePath: '',
-  assetPrefix: './', // ✅ Use relative paths!
+  basePath: process.env.PAGES_BASE_PATH,
   eslint: {
     ignoreDuringBuilds: true,
   },
