@@ -16,7 +16,7 @@ export function Projects() {
         "Custom image format (.nic) with 256 color support",
         "UNIX-based virtual file system",
         "Page frame allocator and standard library",
-        "Custom Image Format (.nic) with 256 color support",
+        "Interactive shell with command history and tab completion",
       ],
       technologies: [
         { name: "C++", color: "blue" },
