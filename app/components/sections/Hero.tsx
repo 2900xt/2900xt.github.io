@@ -21,7 +21,7 @@ export function Hero() {
 
   return (
     <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-      <motion.div 
+      <motion.div
         className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -34,12 +34,12 @@ export function Hero() {
           initial="initial"
           animate="animate"
         >
-          <motion.div 
+          <motion.div
             className="relative inline-block mb-6"
             variants={fadeUpAnimation}
           >
             <motion.img
-              src="https://media.licdn.com/dms/image/v2/D4E03AQHaiiD7mw8qKg/profile-displayphoto-shrink_800_800/B4EZcIvvcqHcAg-/0/1748198424510?e=1755129600&v=beta&t=A_GXAZVCVsqHUpGG7hYXx1Rc7Cf79sMSKS6aL2foYxA"
+              src="https://media.licdn.com/dms/image/v2/D4E03AQE3enXD-i2YvQ/profile-displayphoto-crop_800_800/B4EZeNrmisHcAM-/0/1750428708179?e=1756339200&v=beta&t=E6Ub3FXTtojaL51zddMR3AlJ0KRPcJbdIjmISOE_5mI"
               alt="Taha Rawjani"
               className="w-40 h-40 rounded-full mx-auto border-4 border-white/20 shadow-2xl"
               initial={{ scale: 0.5, opacity: 0 }}
@@ -47,20 +47,20 @@ export function Hero() {
               transition={{ duration: 0.5, ease: "easeOut" }}
             />
           </motion.div>
-          <motion.h1 
+          <motion.h1
             className="text-6xl font-bold text-white mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
             variants={fadeUpAnimation}
           >
             Taha Rawjani
           </motion.h1>
-          <motion.p 
+          <motion.p
             className="text-xl text-gray-300 mb-6 max-w-3xl mx-auto leading-relaxed"
             variants={fadeUpAnimation}
           >
             Systems Developer & Competitive Programmer specializing in operating systems, AI applications, and
             high-performance computing
           </motion.p>
-          <motion.div 
+          <motion.div
             className="flex flex-wrap justify-center gap-3 mb-8"
             variants={fadeUpAnimation}
           >
@@ -88,7 +88,7 @@ export function Hero() {
               </motion.div>
             ))}
           </motion.div>
-          <motion.div 
+          <motion.div
             className="flex justify-center space-x-4"
             variants={fadeUpAnimation}
           >
