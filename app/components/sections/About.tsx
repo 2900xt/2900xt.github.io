@@ -10,12 +10,6 @@ export function About() {
       color: "bg-red-500"
     },
     {
-      title: "Software Engineer • Clara.so",
-      description: "Working on AI video marketing platform",
-      date: "May 2025 - Present",
-      color: "bg-cyan-500"
-    },
-    {
       title: "Co-founder • Cognicade Studios",
       description: "Working with LCPS to integrate an educational games platform in elementary schools",
       date: "Aug 2024 - Present",

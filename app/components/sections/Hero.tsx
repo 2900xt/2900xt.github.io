@@ -39,7 +39,7 @@ export function Hero() {
             variants={fadeUpAnimation}
           >
             <motion.img
-              src="https://media.licdn.com/dms/image/v2/D4E03AQGhMQWevidBCw/profile-displayphoto-crop_800_800/B4EZefZ4WoHgAI-/0/1750726051789?e=1756339200&v=beta&t=QZdTZxs4-sopGXVrlbRT7ViCZN8ATM4l2OdvJ-3gS7Y"
+              src="https://media.licdn.com/dms/image/v2/D4E03AQFOnA7t_zQL4w/profile-displayphoto-crop_800_800/B4EZevGdYYGcAI-/0/1750989396458?e=1756944000&v=beta&t=KYuYvf4nWQarCUbFEL7Rfadezf2U_uKyPKSm8dHZ_NM"
               alt="Taha Rawjani"
               className="w-40 h-40 rounded-full mx-auto border-4 border-white/20 shadow-2xl"
               initial={{ scale: 0.5, opacity: 0 }}
