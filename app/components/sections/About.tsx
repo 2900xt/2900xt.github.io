@@ -177,8 +177,8 @@ export function About() {
               <CardContent>
                 <div className="space-y-4">
                   <div>
-                    <div className="font-semibold">Clara.so</div>
-                    <div className="text-orange-200 text-sm">AI Video Marketing</div>
+                    <div className="font-semibold">ACL OJ</div>
+                    <div className="text-orange-200 text-sm">Online Judge for ACL</div>
                   </div>
                   <div>
                     <div className="font-semibold">RAPTOR</div>
