@@ -4,8 +4,8 @@ import { Terminal, Award, Users, Zap } from "lucide-react"
 export function About() {
   const experiences = [
     {
-      title: "Incoming Cybersecurity Intern • Maximus",
-      description: "...",
+      title: "AI Software Engineering Intern • Maximus",
+      description: "Scaling secure AI agents built with AWS Bedrock and Amazon Lex to work across a variety of CCaaS solutions.",
       date: "Jun 2025 - Present",
       color: "bg-red-500"
     },
