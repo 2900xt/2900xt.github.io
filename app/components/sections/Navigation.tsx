@@ -4,7 +4,8 @@ const navItems = [
   { href: "#about", label: "About" },
   { href: "#projects", label: "Projects" },
   { href: "#achievements", label: "Achievements" },
-  { href: "#contact", label: "Contact" }
+  { href: "#contact", label: "Contact" },
+  { href: "/neoos", label: "NEO-OS" }
 ]
 
 export function Navigation() {
