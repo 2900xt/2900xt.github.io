@@ -2,6 +2,116 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Mermaid diagram styling for better visibility and compactness */
+.mermaid-container {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.mermaid-container svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Force ALL text elements to be white and compact */
+.mermaid-container svg text,
+.mermaid-container svg tspan,
+.mermaid-container svg .label,
+.mermaid-container svg .edgeLabel,
+.mermaid-container svg .nodeLabel,
+.mermaid-container svg foreignObject div {
+  fill: #ffffff !important;
+  color: #ffffff !important;
+  font-family: Inter, system-ui, sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 400 !important;
+}
+
+/* Compact node styling */
+.mermaid-container svg .node rect,
+.mermaid-container svg .node circle,
+.mermaid-container svg .node ellipse,
+.mermaid-container svg .node polygon {
+  fill: #374151 !important;
+  stroke: #6b7280 !important;
+  stroke-width: 1.5px !important;
+}
+
+/* Edge label styling */
+.mermaid-container svg .edgeLabel,
+.mermaid-container svg .edgeLabel rect {
+  fill: #374151 !important;
+  background-color: #374151 !important;
+  color: #ffffff !important;
+}
+
+.mermaid-container svg .edgeLabel .label,
+.mermaid-container svg .edgeLabel text {
+  fill: #ffffff !important;
+  color: #ffffff !important;
+  font-size: 11px !important;
+}
+
+/* Cluster styling */
+.mermaid-container svg .cluster rect {
+  fill: #374151 !important;
+  stroke: #6b7280 !important;
+  stroke-width: 1.5px !important;
+}
+
+.mermaid-container svg .cluster text {
+  fill: #ffffff !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+}
+
+/* Edge and arrow styling */
+.mermaid-container svg path.edge-thick {
+  stroke: #9ca3af !important;
+  stroke-width: 2px !important;
+}
+
+.mermaid-container svg .edgePath path {
+  stroke: #9ca3af !important;
+  stroke-width: 1.5px !important;
+}
+
+.mermaid-container svg .arrowheadPath {
+  fill: #9ca3af !important;
+  stroke: #9ca3af !important;
+}
+
+/* Make flowcharts more compact */
+.mermaid-container svg g.nodes {
+  transform-origin: center;
+}
+
+/* Specific fixes for different diagram types */
+.mermaid-container svg .nodeLabel,
+.mermaid-container svg .cluster .nodeLabel {
+  fill: #ffffff !important;
+  color: #ffffff !important;
+}
+
+/* Foreign object text (for HTML labels) */
+.mermaid-container svg foreignObject {
+  color: #ffffff !important;
+}
+
+.mermaid-container svg foreignObject div {
+  color: #ffffff !important;
+  background: transparent !important;
+}
+
+@layer utilities {
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
 body {
   font-family: Arial, Helvetica, sans-serif;
 }

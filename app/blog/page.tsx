@@ -1,12 +1,41 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { useState } from "react"
+import { motion, useScroll, useSpring } from "framer-motion"
 import { ArrowLeft } from "lucide-react"
 import Link from "next/link"
+import { blogPosts, BlogPost } from "./data"
+import SearchBar from "./components/SearchBar"
+import BlogCard from "./components/BlogCard"
+import { Footer } from "../components/sections/Footer"
 
 export default function BlogPage() {
+  const [filteredPosts, setFilteredPosts] = useState<BlogPost[]>(blogPosts)
+  const [activeTag, setActiveTag] = useState<string | null>(null)
+
+  const { scrollYProgress } = useScroll()
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  })
+
+  const handleSearchResults = (results: BlogPost[]) => {
+    setFilteredPosts(results)
+  }
+
+  const handleTagFilter = (tag: string | null) => {
+    setActiveTag(tag)
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+      {/* Scroll Progress Indicator */}
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 to-purple-500 z-50 origin-left"
+        style={{ scaleX }}
+      />
+
       {/* Navigation */}
       <motion.nav
         className="fixed top-0 w-full bg-black/20 backdrop-blur-xl border-b border-white/10 z-50"
@@ -49,7 +78,7 @@ export default function BlogPage() {
 
       {/* Main Content */}
       <div className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           {/* Back Button */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -77,39 +106,68 @@ export default function BlogPage() {
               Blog
             </h1>
             <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-              Thoughts on systems programming, AI, and software development
+              My (terrible) thoughts for everyone to see!
             </p>
           </motion.div>
 
-          {/* Coming Soon Section */}
-          <motion.div
-            className="text-center py-20"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.5 }}
-          >
-            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-12 border border-white/10">
-              <h2 className="text-3xl font-bold text-white mb-4">
-                Coming Soon
-              </h2>
-              <p className="text-gray-300 text-lg mb-8 max-w-md mx-auto">
-                I'm working on some interesting content about operating systems, AI development, and my experiences in competitive programming.
-              </p>
-              <div className="flex justify-center space-x-4">
-                <div className="bg-blue-500/20 rounded-lg px-4 py-2">
-                  <span className="text-blue-300 text-sm">Systems Programming</span>
-                </div>
-                <div className="bg-green-500/20 rounded-lg px-4 py-2">
-                  <span className="text-green-300 text-sm">AI/ML</span>
-                </div>
-                <div className="bg-purple-500/20 rounded-lg px-4 py-2">
-                  <span className="text-purple-300 text-sm">Competitive Programming</span>
-                </div>
+          {/* Search and Filter */}
+          <SearchBar 
+            onSearchResults={handleSearchResults}
+            onTagFilter={handleTagFilter}
+          />
+
+          {/* Blog Posts Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {filteredPosts.map((post, index) => (
+              <BlogCard key={post.id} post={post} index={index} />
+            ))}
+          </div>
+
+          {/* No Results */}
+          {filteredPosts.length === 0 && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-center py-20"
+            >
+              <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-12 border border-white/10">
+                <h2 className="text-2xl font-bold text-white mb-4">
+                  No articles found
+                </h2>
+                <p className="text-gray-300 text-lg mb-8">
+                  Try adjusting your search terms or filters to find what you're looking for.
+                </p>
+                <button
+                  onClick={() => {
+                    setFilteredPosts(blogPosts)
+                    setActiveTag(null)
+                  }}
+                  className="px-6 py-3 bg-blue-500/20 border border-blue-500/50 text-blue-300 rounded-xl hover:bg-blue-500/30 transition-all duration-200"
+                >
+                  Show all articles
+                </button>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          )}
+
+          {/* Results Count */}
+          {filteredPosts.length > 0 && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="mt-12 text-center text-gray-400"
+            >
+              <p>
+                Showing {filteredPosts.length} article{filteredPosts.length !== 1 ? 's' : ''}
+                {activeTag && ` tagged with "${activeTag}"`}
+              </p>
+            </motion.div>
+          )}
         </div>
       </div>
+
+      {/* Footer */}
+      <Footer />
 
       {/* Floating elements */}
       <motion.div
