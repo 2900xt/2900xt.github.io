@@ -1,23 +1,26 @@
 "use client"
 
 import { ProjectCard } from "../cards/ProjectCard"
-import { Terminal, Brain, Gamepad2, Cpu, Search } from "lucide-react"
+import { Terminal, Brain, Gamepad2, Cpu, Search, ChevronLeft, ChevronRight } from "lucide-react"
 import { useState, useMemo } from "react"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
 
 export function Projects() {
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedTags, setSelectedTags] = useState<string[]>([])
   const [techSearchQuery, setTechSearchQuery] = useState("")
+  const [currentPage, setCurrentPage] = useState(1)
+  const projectsPerPage = 4
 
   const projects = [
     {
       title: "neo-OS",
       description: "Custom Operating System for AMD64 Architecture",
       longDescription: "A complete operating system written from scratch in C++ and assembly, featuring custom drivers, virtual file system, and multithreading support.",
-      image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhMrlccHTZ82RdXXFBu3ByXTGOxRW7OIIryatLiskJuUMFZnxJ65pHt9drQePjZaorlvhZzBYfhIGWx-R84pKJ24rPlM8VSlp59v4nOaa7dux9hfu54bJ7q19Zs7oqAzV1swUpodAQLS8Ie/s1600/kernel_3_output_2.png",
+      image: "/neoOSPreview.png",
       icon: <Terminal />,
       iconColor: "text-blue-400",
       link: "https://github.com/2900xt/neo-OS",
@@ -39,7 +42,7 @@ export function Projects() {
       title: "MobyGlobal",
       description: "AI-Powered Whale Population Tracking Network",
       longDescription: "A network of smart buoys using custom AI models to detect and track whale populations in the North Atlantic through acoustic analysis and real-time data processing.",
-      image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&h=200&fit=crop",
+      image: "/mobyGlobalPoster.png",
       icon: <Brain />,
       link: "https://isef.net/project/robo046t-mobyglobal-a-real-time-whale-detection-network",
       iconColor: "text-green-400",
@@ -54,6 +57,148 @@ export function Projects() {
         { name: "TensorFlow", color: "orange" },
         { name: "Android", color: "blue" },
         { name: "IoT", color: "purple" }
+      ]
+    },
+    {
+      title: "CHIP-8 Emulator",
+      description: "Custom CHIP-8 Emulator Implementation",
+      longDescription: "A complete CHIP-8 emulator written in C, featuring all 35 original opcodes, memory management, and video output. Includes ROM loading and real-time emulation.",
+      image: "/chip8Preview.png",
+      icon: <Cpu />,
+      iconColor: "text-cyan-400",
+      link: "https://github.com/2900xt/chip8-emu",
+      features: [
+        "Complete implementation of all 35 CHIP-8 opcodes",
+        "Memory management and ROM loading",
+        "Video output and display system",
+        "Test ROM compatibility and debugging tools"
+      ],
+      technologies: [
+        { name: "C", color: "blue" },
+        { name: "Emulation", color: "purple" },
+        { name: "Low-Level", color: "orange" }
+      ]
+    },
+    {
+      title: "EcoSpark",
+      description: "Educational Climate Change Management Game",
+      longDescription: "Built for the 2024 Congressional App Challenge, Virginia District 10. An educational game that teaches players about climate change through city management and energy resource balancing.",
+      image: "/ecoSparkPreview.png",
+      icon: <Brain />,
+      iconColor: "text-green-400",
+      link: "https://github.com/CognicadeStudios/EcoSpark",
+      features: [
+        "Educational climate change simulation",
+        "City management and energy resource balancing",
+        "Contract system with AI-powered negotiations",
+        "Research upgrades and eco-friendly housing options"
+      ],
+      technologies: [
+        { name: "C#", color: "purple" },
+        { name: "Unity", color: "blue" },
+        { name: "Game Dev", color: "green" },
+        { name: "AI", color: "orange" }
+      ]
+    },
+    {
+      title: "WinterWarzone",
+      description: "Multiplayer Winter Combat Game",
+      longDescription: "A multiplayer combat game set in a winter environment with strategic gameplay and team-based mechanics.",
+      image: "/winterWarzonePreview.png",
+      icon: <Gamepad2 />,
+      iconColor: "text-blue-400",
+      link: "https://github.com/2900xt/WinterWarzone",
+      features: [
+        "Multiplayer combat mechanics",
+        "Winter-themed environment and gameplay",
+        "Strategic team-based combat",
+        "Real-time multiplayer networking"
+      ],
+      technologies: [
+        { name: "Game Dev", color: "green" },
+        { name: "Multiplayer", color: "blue" },
+        { name: "Networking", color: "purple" }
+      ]
+    },
+    {
+      title: "Grading Hat",
+      description: "AI-Powered Grading Assistant",
+      longDescription: "An intelligent grading system that uses AI to assist educators in evaluating student work efficiently and consistently.",
+      image: "/gradingHatPreview.png",
+      icon: <Brain />,
+      iconColor: "text-yellow-400",
+      link: "https://github.com/2900xt/Grading-Hat",
+      features: [
+        "AI-powered grading assistance",
+        "Consistent evaluation standards",
+        "Educational workflow integration",
+        "Automated feedback generation"
+      ],
+      technologies: [
+        { name: "AI/ML", color: "orange" },
+        { name: "Education", color: "blue" },
+        { name: "Automation", color: "green" }
+      ]
+    },
+    {
+      title: "plundr.io",
+      description: "Pirate-Themed Multiplayer Strategy Game",
+      longDescription: "A competitive multiplayer game where players take on the role of pirates, competing for treasure and territory in a dynamic ocean environment.",
+      image: "/plundrIOPreview.png",
+      icon: <Gamepad2 />,
+      iconColor: "text-orange-400",
+      link: "https://devpost.com/software/plundr-io",
+      features: [
+        "Pirate-themed multiplayer gameplay",
+        "Treasure hunting and territory control",
+        "Real-time strategy elements",
+        "Competitive multiplayer mechanics"
+      ],
+      technologies: [
+        { name: "Game Dev", color: "green" },
+        { name: "Multiplayer", color: "blue" },
+        { name: "Strategy", color: "purple" }
+      ]
+    },
+    {
+      title: "Bread to Dough",
+      description: "Bread Tycoon Game with Prestige System",
+      longDescription: "A bread tycoon game where players farm resources and build automated factories to create bread. Features a prestige system with 5 bread tiers and hand-drawn assets.",
+      image: "/bread2DoughPreview.png",
+      icon: <Gamepad2 />,
+      iconColor: "text-yellow-400",
+      link: "https://devpost.com/software/bread-to-dough",
+      features: [
+        "Prestige system with 5 bread tiers",
+        "Automated bread factories",
+        "Resource farming mechanics",
+        "Hand-drawn assets and cutscenes"
+      ],
+      technologies: [
+        { name: "C#", color: "purple" },
+        { name: "Unity", color: "blue" },
+        { name: "Game Dev", color: "green" },
+        { name: "HTML", color: "orange" }
+      ]
+    },
+    {
+      title: "The Rookie",
+      description: "First-Person Spy Platformer with Simulation Twist",
+      longDescription: "A first-person platformer inspired by Karlson and Portal where players use grappling, hacking, and energy blasting mechanics through a BURP device. Features a plot twist where the entire game is revealed to be a spy simulation test that players must escape.",
+      image: "/theRookie.png",
+      icon: <Gamepad2 />,
+      iconColor: "text-red-400",
+      link: "https://devpost.com/software/the-rookie",
+      features: [
+        "Three core mechanics: grappling, hacking, energy blasting",
+        "BURP device (Universal Radiocarpal Piece)",
+        "Simulation twist and escape storyline",
+        "3 levels with hidden escape codes"
+      ],
+      technologies: [
+        { name: "C#", color: "purple" },
+        { name: "Unity", color: "blue" },
+        { name: "Game Dev", color: "green" }
       ]
     },
     {
@@ -133,12 +278,49 @@ export function Projects() {
     })
   }, [searchQuery, selectedTags])
 
+  // Pagination logic
+  const totalPages = Math.ceil(filteredProjects.length / projectsPerPage)
+  const startIndex = (currentPage - 1) * projectsPerPage
+  const endIndex = startIndex + projectsPerPage
+  const currentProjects = filteredProjects.slice(startIndex, endIndex)
+
+  // Reset to first page when filters change
+  const resetToFirstPage = () => {
+    setCurrentPage(1)
+  }
+
   const toggleTag = (tag: string) => {
     setSelectedTags(prev => 
       prev.includes(tag) 
         ? prev.filter(t => t !== tag)
         : [...prev, tag]
     )
+    resetToFirstPage()
+  }
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value)
+    resetToFirstPage()
+  }
+
+  const handleTechSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTechSearchQuery(e.target.value)
+  }
+
+  const goToPage = (page: number) => {
+    setCurrentPage(Math.max(1, Math.min(page, totalPages)))
+  }
+
+  const nextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1)
+    }
+  }
+
+  const prevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1)
+    }
   }
 
   return (
@@ -155,7 +337,7 @@ export function Projects() {
                 type="text"
                 placeholder="Search projects by name or description..."
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={handleSearchChange}
                 className="pl-10 bg-white/10 border-white/20 text-white placeholder-gray-400 focus:bg-white/15 focus:border-white/30"
               />
             </div>
@@ -167,7 +349,7 @@ export function Projects() {
                 type="text"
                 placeholder="Search technologies..."
                 value={techSearchQuery}
-                onChange={(e) => setTechSearchQuery(e.target.value)}
+                onChange={handleTechSearchChange}
                 className="pl-10 bg-white/10 border-white/20 text-white placeholder-gray-400 focus:bg-white/15 focus:border-white/30"
               />
             </div>
@@ -179,7 +361,10 @@ export function Projects() {
               <h3 className="text-lg font-semibold text-white">Filter by Technology:</h3>
               {selectedTags.length > 0 && (
                 <button
-                  onClick={() => setSelectedTags([])}
+                  onClick={() => {
+                    setSelectedTags([])
+                    resetToFirstPage()
+                  }}
                   className="text-sm text-blue-400 hover:text-blue-300 underline"
                 >
                   Clear all
@@ -216,7 +401,7 @@ export function Projects() {
 
           {/* Results Count */}
           <div className="text-gray-300 text-sm">
-            Showing {filteredProjects.length} of {projects.length} projects
+            Showing {startIndex + 1}-{Math.min(endIndex, filteredProjects.length)} of {filteredProjects.length} projects
             {selectedTags.length > 0 && (
               <span className="ml-2">
                 • Filtered by: {selectedTags.join(", ")}
@@ -226,18 +411,66 @@ export function Projects() {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid lg:grid-cols-2 gap-8">
-          {filteredProjects.map((project, index) => (
+        <div className="grid lg:grid-cols-2 gap-8 mb-8">
+          {currentProjects.map((project, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
+              className={currentProjects.length % 2 === 1 && index === currentProjects.length - 1 ? "lg:col-span-2 lg:max-w-2xl lg:mx-auto" : ""}
             >
               <ProjectCard {...project} />
             </motion.div>
           ))}
         </div>
+
+        {/* Pagination Controls */}
+        {totalPages > 1 && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="flex justify-center items-center space-x-4"
+          >
+            <Button
+              variant="outline"
+              onClick={prevPage}
+              disabled={currentPage === 1}
+              className="bg-transparent border-white/30 text-white hover:bg-white/10 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <ChevronLeft className="h-4 w-4 mr-2" />
+              Previous
+            </Button>
+
+            {/* Page Numbers */}
+            <div className="flex space-x-2">
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                <Button
+                  key={page}
+                  variant={page === currentPage ? "default" : "outline"}
+                  onClick={() => goToPage(page)}
+                  className={`w-10 h-10 p-0 ${
+                    page === currentPage
+                      ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white"
+                      : "bg-transparent border-white/30 text-white hover:bg-white/10"
+                  }`}
+                >
+                  {page}
+                </Button>
+              ))}
+            </div>
+
+            <Button
+              variant="outline"
+              onClick={nextPage}
+              disabled={currentPage === totalPages}
+              className="bg-transparent border-white/30 text-white hover:bg-white/10 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              Next
+              <ChevronRight className="h-4 w-4 ml-2" />
+            </Button>
+          </motion.div>
+        )}
 
         {/* No Results Message */}
         {filteredProjects.length === 0 && (
@@ -252,6 +485,7 @@ export function Projects() {
                 setSearchQuery("")
                 setSelectedTags([])
                 setTechSearchQuery("")
+                resetToFirstPage()
               }}
               className="mt-4 text-blue-400 hover:text-blue-300 underline"
             >
