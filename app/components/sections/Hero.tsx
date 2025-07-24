@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { Github, Mail, FileText } from "lucide-react"
+import { BookOpen, Mail, FileText } from "lucide-react"
 import { motion } from "framer-motion"
 import Link from "next/link"
 
@@ -99,9 +99,9 @@ export function Hero() {
                 asChild
                 className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 text-lg"
               >
-                <Link href="https://github.com/2900xt" target="_blank">
-                  <Github className="mr-2 h-5 w-5" />
-                  View GitHub
+                <Link href="/blog">
+                  <BookOpen className="mr-2 h-5 w-5" />
+                  View Blog
                 </Link>
               </Button>
             </motion.div>
