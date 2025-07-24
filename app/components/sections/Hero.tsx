@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { Github, Mail } from "lucide-react"
+import { Github, Mail, FileText } from "lucide-react"
 import { motion } from "framer-motion"
 import Link from "next/link"
 
@@ -57,8 +57,7 @@ export function Hero() {
             className="text-xl text-gray-300 mb-6 max-w-3xl mx-auto leading-relaxed"
             variants={fadeUpAnimation}
           >
-            Systems Developer & Competitive Programmer specializing in operating systems, AI applications, and
-            high-performance computing
+            I like to build things. I work on a combo of AI, ML, and low-level systems.
           </motion.p>
           <motion.div
             className="flex flex-wrap justify-center gap-3 mb-8"
@@ -111,14 +110,13 @@ export function Hero() {
               whileTap={{ scale: 0.95 }}
             >
               <Button
-                variant="outline"
                 asChild
-                className="bg-transparent border-white/30 text-white hover:bg-white/10 hover:text-white px-8 py-3 text-lg"
+                className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white px-8 py-3 text-lg shadow-lg hover:shadow-xl transition-all duration-300"
               >
-                <a href="#contact" className="flex items-center">
-                  <Mail className="mr-2 h-5 w-5" />
-                  Get In Touch
-                </a>
+                <Link href="https://drive.google.com/file/d/1-OFmrfvF2rUUIj614oAJ4DZjBI8c3jEn/view?usp=sharing" target="_blank">
+                  <FileText className="mr-2 h-5 w-5" />
+                  View Resume
+                </Link>
               </Button>
             </motion.div>
           </motion.div>

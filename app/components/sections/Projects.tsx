@@ -1,7 +1,17 @@
+"use client"
+
 import { ProjectCard } from "../cards/ProjectCard"
-import { Terminal, Brain, Gamepad2, Cpu } from "lucide-react"
+import { Terminal, Brain, Gamepad2, Cpu, Search } from "lucide-react"
+import { useState, useMemo } from "react"
+import { Input } from "@/components/ui/input"
+import { Badge } from "@/components/ui/badge"
+import { motion } from "framer-motion"
 
 export function Projects() {
+  const [searchQuery, setSearchQuery] = useState("")
+  const [selectedTags, setSelectedTags] = useState<string[]>([])
+  const [techSearchQuery, setTechSearchQuery] = useState("")
+
   const projects = [
     {
       title: "neo-OS",
@@ -87,19 +97,168 @@ export function Projects() {
     }
   ]
 
+  // Get all unique tags
+  const allTags = useMemo(() => {
+    const tags = new Set<string>()
+    projects.forEach(project => {
+      project.technologies.forEach(tech => tags.add(tech.name))
+    })
+    return Array.from(tags)
+  }, [])
+
+  // Filter technologies based on search query
+  const filteredTags = useMemo(() => {
+    if (!techSearchQuery) return allTags
+    return allTags.filter(tag => 
+      tag.toLowerCase().includes(techSearchQuery.toLowerCase())
+    )
+  }, [allTags, techSearchQuery])
+
+  // Filter projects based on search query and selected tags
+  const filteredProjects = useMemo(() => {
+    return projects.filter(project => {
+      // Search by name or description
+      const matchesSearch = searchQuery === "" || 
+        project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        project.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        project.longDescription.toLowerCase().includes(searchQuery.toLowerCase())
+
+      // Filter by tags
+      const matchesTags = selectedTags.length === 0 || 
+        selectedTags.some(tag => 
+          project.technologies.some(tech => tech.name === tag)
+        )
+
+      return matchesSearch && matchesTags
+    })
+  }, [searchQuery, selectedTags])
+
+  const toggleTag = (tag: string) => {
+    setSelectedTags(prev => 
+      prev.includes(tag) 
+        ? prev.filter(t => t !== tag)
+        : [...prev, tag]
+    )
+  }
+
   return (
     <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-900 to-slate-800">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl font-bold text-center text-white mb-4">Featured Projects</h2>
-        <p className="text-center text-gray-300 mb-12 text-lg">
-          Recent work in systems programming and AI applications
-        </p>
+        {/* Search and Filter Section */}
+        <div className="mb-12">
+          {/* Search Inputs Row */}
+          <div className="flex flex-col lg:flex-row gap-4 mb-6">
+            {/* Main Search Input */}
+            <div className="relative flex-1">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+              <Input
+                type="text"
+                placeholder="Search projects by name or description..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-10 bg-white/10 border-white/20 text-white placeholder-gray-400 focus:bg-white/15 focus:border-white/30"
+              />
+            </div>
 
+            {/* Technology Search Input */}
+            <div className="relative lg:w-64">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+              <Input
+                type="text"
+                placeholder="Search technologies..."
+                value={techSearchQuery}
+                onChange={(e) => setTechSearchQuery(e.target.value)}
+                className="pl-10 bg-white/10 border-white/20 text-white placeholder-gray-400 focus:bg-white/15 focus:border-white/30"
+              />
+            </div>
+          </div>
+
+          {/* Filter Tags */}
+          <div className="mb-6">
+            <div className="flex items-center justify-between mb-3">
+              <h3 className="text-lg font-semibold text-white">Filter by Technology:</h3>
+              {selectedTags.length > 0 && (
+                <button
+                  onClick={() => setSelectedTags([])}
+                  className="text-sm text-blue-400 hover:text-blue-300 underline"
+                >
+                  Clear all
+                </button>
+              )}
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {filteredTags.map((tag) => (
+                <motion.div
+                  key={tag}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Badge
+                    variant={selectedTags.includes(tag) ? "default" : "outline"}
+                    className={`cursor-pointer transition-all duration-200 ${
+                      selectedTags.includes(tag)
+                        ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white"
+                        : "bg-transparent border-white/30 text-white hover:bg-white/10"
+                    }`}
+                    onClick={() => toggleTag(tag)}
+                  >
+                    {tag}
+                  </Badge>
+                </motion.div>
+              ))}
+            </div>
+            {filteredTags.length === 0 && techSearchQuery && (
+              <p className="text-gray-400 text-sm mt-2">No technologies found matching "{techSearchQuery}"</p>
+            )}
+          </div>
+
+          {/* Results Count */}
+          <div className="text-gray-300 text-sm">
+            Showing {filteredProjects.length} of {projects.length} projects
+            {selectedTags.length > 0 && (
+              <span className="ml-2">
+                • Filtered by: {selectedTags.join(", ")}
+              </span>
+            )}
+          </div>
+        </div>
+
+        {/* Projects Grid */}
         <div className="grid lg:grid-cols-2 gap-8">
-          {projects.map((project, index) => (
-            <ProjectCard key={index} {...project} />
+          {filteredProjects.map((project, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+            >
+              <ProjectCard {...project} />
+            </motion.div>
           ))}
         </div>
+
+        {/* No Results Message */}
+        {filteredProjects.length === 0 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-center py-12"
+          >
+            <p className="text-gray-400 text-lg">No projects found matching your criteria.</p>
+            <button
+              onClick={() => {
+                setSearchQuery("")
+                setSelectedTags([])
+                setTechSearchQuery("")
+              }}
+              className="mt-4 text-blue-400 hover:text-blue-300 underline"
+            >
+              Clear all filters
+            </button>
+          </motion.div>
+        )}
       </div>
     </section>
   )

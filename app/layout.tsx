@@ -6,6 +6,13 @@ export const metadata: Metadata = {
   title: 'Taha Rawjani',
   description: 'Created by Taha Rawjani',
   generator: 'Taha Rawjani',
+  icons: {
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico', sizes: 'any' }
+    ],
+    apple: '/favicon.svg',
+  },
 }
 
 export default function RootLayout({

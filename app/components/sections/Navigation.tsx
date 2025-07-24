@@ -1,11 +1,8 @@
 import { motion } from "framer-motion"
 
 const navItems = [
-  { href: "#about", label: "About" },
   { href: "#projects", label: "Projects" },
-  { href: "#achievements", label: "Achievements" },
-  { href: "#contact", label: "Contact" },
-  { href: "/neoos", label: "NEO-OS" }
+  { href: "/blog", label: "Blog" }
 ]
 
 export function Navigation() {
@@ -26,6 +23,8 @@ export function Navigation() {
           >
             Taha Rawjani
           </motion.div>
+          
+          {/* Right-aligned Navigation Items */}
           <div className="hidden md:flex space-x-8">
             {navItems.map((item, index) => (
               <motion.a
