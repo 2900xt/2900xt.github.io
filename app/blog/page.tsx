@@ -69,7 +69,7 @@ export default function BlogPage() {
             {/* Right-aligned Navigation Items */}
             <div className="hidden md:flex space-x-8">
               <Link 
-                href="/#projects"
+                href="/projects"
                 className="text-gray-300 hover:text-white transition-colors relative"
               >
                 Projects

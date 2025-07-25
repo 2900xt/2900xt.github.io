@@ -109,7 +109,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
             
             <div className="hidden md:flex space-x-8">
               <Link 
-                href="/#projects"
+                href="/projects"
                 className="text-gray-300 hover:text-white transition-colors relative"
               >
                 Projects

@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { BookOpen, Mail, FileText } from "lucide-react"
+import { BookOpen, Mail, FileText, Code } from "lucide-react"
 import { motion } from "framer-motion"
 import Link from "next/link"
 
@@ -88,9 +88,23 @@ export function Hero() {
             ))}
           </motion.div>
           <motion.div
-            className="flex justify-center space-x-4"
+            className="flex flex-wrap justify-center gap-4"
             variants={fadeUpAnimation}
           >
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Button
+                asChild
+                className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-3 text-lg shadow-lg hover:shadow-xl transition-all duration-300"
+              >
+                <Link href="/projects">
+                  <Code className="mr-2 h-5 w-5" />
+                  Projects
+                </Link>
+              </Button>
+            </motion.div>
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -101,7 +115,7 @@ export function Hero() {
               >
                 <Link href="/blog">
                   <BookOpen className="mr-2 h-5 w-5" />
-                  Read My Blog
+                  Blog
                 </Link>
               </Button>
             </motion.div>
@@ -115,7 +129,7 @@ export function Hero() {
               >
                 <Link href="https://drive.google.com/file/d/1-OFmrfvF2rUUIj614oAJ4DZjBI8c3jEn/view?usp=sharing" target="_blank">
                   <FileText className="mr-2 h-5 w-5" />
-                  See My Resume
+                  Resume
                 </Link>
               </Button>
             </motion.div>

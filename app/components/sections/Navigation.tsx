@@ -3,7 +3,7 @@ import Image from "next/image"
 import Link from "next/link"
 
 const navItems = [
-  { href: "#projects", label: "Projects" },
+  { href: "/projects", label: "Projects" },
   { href: "/blog", label: "Blog" }
 ]
 
@@ -40,24 +40,24 @@ export function Navigation() {
           {/* Right-aligned Navigation Items */}
           <div className="hidden md:flex space-x-8">
             {navItems.map((item, index) => (
-              <motion.a
-                key={item.href}
-                href={item.href}
-                className="text-gray-300 hover:text-white transition-colors relative"
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 + index * 0.1, duration: 0.5 }}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {item.label}
-                <motion.div
-                  className="absolute bottom-0 left-0 w-full h-0.5 bg-white origin-left"
-                  initial={{ scaleX: 0 }}
-                  whileHover={{ scaleX: 1 }}
-                  transition={{ duration: 0.3 }}
-                />
-              </motion.a>
+              <Link key={item.href} href={item.href}>
+                <motion.span
+                  className="text-gray-300 hover:text-white transition-colors relative inline-block"
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 + index * 0.1, duration: 0.5 }}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  {item.label}
+                  <motion.div
+                    className="absolute bottom-0 left-0 w-full h-0.5 bg-white origin-left"
+                    initial={{ scaleX: 0 }}
+                    whileHover={{ scaleX: 1 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                </motion.span>
+              </Link>
             ))}
           </div>
         </div>

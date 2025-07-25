@@ -2,7 +2,11 @@
 
 import { Navigation } from "./components/sections/Navigation"
 import { Hero } from "./components/sections/Hero"
-import { Projects } from "./components/sections/Projects"
+import { About } from "./components/sections/About"
+import { Activity } from "./components/sections/Activity"
+import { Projects } from "./components/sections/Projects" 
+import { Achievements } from "./components/sections/Achievements"
+import { Contact } from "./components/sections/Contact"
 import { Footer } from "./components/sections/Footer"
 import { motion, useScroll, useSpring } from "framer-motion"
 import { useEffect } from "react"
@@ -33,7 +37,7 @@ export default function Portfolio() {
       
       <Navigation />
       <Hero />
-      <Projects />
+      <Activity />
       <Footer />
     </div>
   )
