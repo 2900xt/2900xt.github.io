@@ -3,6 +3,7 @@
 import { motion, useScroll, useSpring } from "framer-motion"
 import { ArrowLeft, Calendar, Clock, Tag } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 import { notFound } from "next/navigation"
 import { format } from "date-fns"
 import { blogPosts } from "../data"
@@ -86,14 +87,25 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
-            <motion.div
-              className="text-xl font-bold text-white"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2, duration: 0.5 }}
-            >
-              Taha Rawjani
-            </motion.div>
+            <Link href="/" className="block">
+              <motion.div
+                className="flex items-center space-x-3 text-xl font-bold text-white hover:text-gray-200 transition-colors cursor-pointer"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.2, duration: 0.5 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Image
+                  src="/favicon.svg"
+                  alt="Taha Rawjani Logo"
+                  width={28}
+                  height={28}
+                  className="w-7 h-7"
+                />
+                <span>Taha Rawjani</span>
+              </motion.div>
+            </Link>
             
             <div className="hidden md:flex space-x-8">
               <Link 

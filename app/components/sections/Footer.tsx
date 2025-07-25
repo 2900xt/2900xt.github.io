@@ -1,4 +1,4 @@
-import { Github, Mail } from "lucide-react"
+import { Github, Mail, Linkedin, Youtube } from "lucide-react"
 import { motion } from "framer-motion"
 
 export function Footer() {
@@ -7,6 +7,16 @@ export function Footer() {
       href: "https://github.com/2900xt",
       icon: <Github className="h-6 w-6" />,
       label: "GitHub"
+    },
+    {
+      href: "https://www.linkedin.com/in/taha-rawjani-08959a2a0/",
+      icon: <Linkedin className="h-6 w-6" />,
+      label: "LinkedIn"
+    },
+    {
+      href: "https://www.youtube.com/@Its-ahat",
+      icon: <Youtube className="h-6 w-6" />,
+      label: "YouTube"
     },
     {
       href: "mailto:tahakrawjani@gmail.com",

@@ -101,7 +101,7 @@ export function Hero() {
               >
                 <Link href="/blog">
                   <BookOpen className="mr-2 h-5 w-5" />
-                  View Blog
+                  Read My Blog
                 </Link>
               </Button>
             </motion.div>
@@ -115,7 +115,7 @@ export function Hero() {
               >
                 <Link href="https://drive.google.com/file/d/1-OFmrfvF2rUUIj614oAJ4DZjBI8c3jEn/view?usp=sharing" target="_blank">
                   <FileText className="mr-2 h-5 w-5" />
-                  View Resume
+                  See My Resume
                 </Link>
               </Button>
             </motion.div>

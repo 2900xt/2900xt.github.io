@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import { Analytics } from "@vercel/analytics/next"
+import CursorTrail from './components/ui/CursorTrail'
+import MagneticCursor from './components/ui/MagneticCursor'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -23,6 +25,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body suppressHydrationWarning={true}>
+        <MagneticCursor />
+        {/* <CursorTrail /> */}
         {children}
         <Analytics />
       </body>

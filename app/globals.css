@@ -116,6 +116,30 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Cursor Trail Effects */
+@media (hover: hover) {
+  /* Hide default cursor on desktop */
+  * {
+    cursor: none !important;
+  }
+
+  /* Magnetic effect for interactive elements */
+  button, a, [role="button"], input, textarea {
+    transition: transform 0.2s ease-out;
+  }
+  
+  button:hover, a:hover, [role="button"]:hover {
+    transform: scale(1.05);
+  }
+}
+
+/* Show cursor on mobile/touch devices */
+@media (hover: none) {
+  * {
+    cursor: auto !important;
+  }
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
