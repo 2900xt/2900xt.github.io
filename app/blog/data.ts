@@ -13,6 +13,17 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: "building-x86_64-cross-compiler",
+    title: "Building a Cross-Compiler: Crafting the Tools for x86_64 OS Development",
+    excerpt: "Learn how to build a complete x86_64-elf cross-compiler toolchain from source. We'll explore what cross-compilers are, why they're essential for OS development, and walk through an automated build script that creates the foundation for bare-metal programming.",
+    date: "2024-12-27",
+    tags: ["Cross-Compilation", "Toolchain", "Systems Programming", "GNU", "x86_64", "Operating Systems"],
+    readTime: 5,
+    featured: true,
+    contentFile: "blog/posts/building-x86_64-cross-compiler.md",
+    image: "/neoOSPreview.png"
+  },
+  {
     id: "bootsector-fundamentals",
     title: "Crafting a Basic Bootsector: Your First Step into OS Development",
     excerpt: "Learn how to write a fundamental bootsector that bridges the gap between firmware and your operating system. We'll explore BIOS interrupts, disk reading, and the magic of those final two bytes: 0xAA55.",
