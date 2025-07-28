@@ -60,6 +60,27 @@ export function Projects() {
       ]
     },
     {
+      title: "CMLIB",
+      description: "Custom Machine Learning Library",
+      longDescription: "A custom machine learning library written in C++ with support for various machine learning algorithms and data structures.",
+      image: "/cmlibPreview.png",
+      icon: <Brain />,
+      iconColor: "text-green-400",
+      link: "https://github.com/2900xt/CMLIB",
+      features: [
+        "Custom Machine Learning Algorithms",
+        "Custom Data Structures and Linear Algebra Library",
+        "Custom Plotting Function",
+        "Built in Bare-Bones C++"
+      ],
+      technologies: [
+        { name: "C++", color: "blue" },
+        { name: "Machine Learning", color: "orange" },
+        { name: "Data Structures", color: "purple" },
+        { name: "Math", color: "green" }
+      ]
+    },
+    {
       title: "CHIP-8 Emulator",
       description: "Custom CHIP-8 Emulator Implementation",
       longDescription: "A complete CHIP-8 emulator written in C, featuring all 35 original opcodes, memory management, and video output. Includes ROM loading and real-time emulation.",
