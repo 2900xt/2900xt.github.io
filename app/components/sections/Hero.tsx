@@ -127,7 +127,7 @@ export function Hero() {
                 asChild
                 className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white px-8 py-3 text-lg shadow-lg hover:shadow-xl transition-all duration-300"
               >
-                <Link href="https://drive.google.com/file/d/1-OFmrfvF2rUUIj614oAJ4DZjBI8c3jEn/view?usp=sharing" target="_blank">
+                <Link href="/Taha_Rawjani__Resume.pdf" target="_blank">
                   <FileText className="mr-2 h-5 w-5" />
                   Resume
                 </Link>
