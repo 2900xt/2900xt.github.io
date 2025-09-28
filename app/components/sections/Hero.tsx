@@ -20,9 +20,9 @@ export function Hero() {
   }
 
   return (
-    <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-black">
       <motion.div
-        className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20"
+        className="absolute inset-0 bg-gradient-to-r from-purple-900/30 to-purple-600/20"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
@@ -41,52 +41,24 @@ export function Hero() {
             <motion.img
               src="/tr.jpg"
               alt="Taha Rawjani"
-              className="w-40 h-40 rounded-full mx-auto border-4 border-white/20 shadow-2xl"
+              className="w-40 h-40 rounded-full mx-auto border-4 border-purple-500/30 shadow-2xl shadow-purple-500/20"
               initial={{ scale: 0.5, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.5, ease: "easeOut" }}
             />
           </motion.div>
           <motion.h1
-            className="text-6xl font-bold text-white mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
+            className="text-6xl font-bold text-white mb-4 bg-gradient-to-r from-purple-400 to-purple-300 bg-clip-text text-transparent"
             variants={fadeUpAnimation}
           >
             Taha Rawjani
           </motion.h1>
           <motion.p
-            className="text-xl text-gray-300 mb-6 max-w-3xl mx-auto leading-relaxed"
+            className="text-xl text-purple-100 mb-6 max-w-3xl mx-auto leading-relaxed"
             variants={fadeUpAnimation}
           >
             I like to build things. I work on a combo of AI, ML, and low-level systems.
           </motion.p>
-          <motion.div
-            className="flex flex-wrap justify-center gap-3 mb-8"
-            variants={fadeUpAnimation}
-          >
-            {[
-              "🏆 Competitive Programmer",
-              "💻 Low-Level Developer",
-              "🤖 AI/ML Engineer",
-              "🔬 ISEF Finalist"
-            ].map((text, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.5 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.5 + index * 0.1, duration: 0.3 }}
-              >
-                <Badge className={`bg-gradient-to-r 
-                  ${index === 0 ? "from-yellow-500 to-orange-500" : ""}
-                  ${index === 1 ? "from-purple-500 to-pink-500" : ""}
-                  ${index === 2 ? "from-green-500 to-emerald-500" : ""}
-                  ${index === 3 ? "from-blue-500 to-cyan-500" : ""}
-                  text-white font-semibold px-4 py-2`}
-                >
-                  {text}
-                </Badge>
-              </motion.div>
-            ))}
-          </motion.div>
           <motion.div
             className="flex flex-wrap justify-center gap-4"
             variants={fadeUpAnimation}
@@ -97,7 +69,7 @@ export function Hero() {
             >
               <Button
                 asChild
-                className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-3 text-lg shadow-lg hover:shadow-xl transition-all duration-300"
+                className="bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-700 hover:to-purple-600 text-white px-8 py-3 text-lg shadow-lg hover:shadow-xl hover:shadow-purple-500/25 transition-all duration-300"
               >
                 <Link href="/projects">
                   <Code className="mr-2 h-5 w-5" />
@@ -111,7 +83,7 @@ export function Hero() {
             >
               <Button
                 asChild
-                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 text-lg"
+                className="bg-gradient-to-r from-purple-700 to-purple-600 hover:from-purple-800 hover:to-purple-700 text-white px-8 py-3 text-lg shadow-lg hover:shadow-xl hover:shadow-purple-500/25 transition-all duration-300"
               >
                 <Link href="/blog">
                   <BookOpen className="mr-2 h-5 w-5" />
@@ -125,7 +97,7 @@ export function Hero() {
             >
               <Button
                 asChild
-                className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white px-8 py-3 text-lg shadow-lg hover:shadow-xl transition-all duration-300"
+                className="bg-gradient-to-r from-purple-800 to-purple-700 hover:from-purple-900 hover:to-purple-800 text-white px-8 py-3 text-lg shadow-lg hover:shadow-xl hover:shadow-purple-500/25 transition-all duration-300"
               >
                 <Link href="/Taha_Rawjani__Resume.pdf" target="_blank">
                   <FileText className="mr-2 h-5 w-5" />
@@ -138,7 +110,7 @@ export function Hero() {
       </div>
       {/* Floating elements */}
       <motion.div
-        className="absolute top-20 left-10 w-20 h-20 bg-blue-500/20 rounded-full blur-xl"
+        className="absolute top-20 left-10 w-20 h-20 bg-purple-500/30 rounded-full blur-xl"
         animate={{
           y: [0, 20, 0],
           scale: [1, 1.1, 1],
@@ -150,7 +122,7 @@ export function Hero() {
         }}
       />
       <motion.div
-        className="absolute bottom-20 right-10 w-32 h-32 bg-purple-500/20 rounded-full blur-xl"
+        className="absolute bottom-20 right-10 w-32 h-32 bg-purple-400/25 rounded-full blur-xl"
         animate={{
           y: [0, -20, 0],
           scale: [1, 1.1, 1],

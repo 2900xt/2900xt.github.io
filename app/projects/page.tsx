@@ -44,7 +44,7 @@ export default function ProjectsPage() {
             My <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Projects</span>
           </h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            A collection of my software engineering projects, ranging from operating systems and AI applications to games and educational tools.
+            sm (cool)-ish stuff i've made
           </p>
         </div>
       </motion.div>
