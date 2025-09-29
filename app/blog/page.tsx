@@ -30,11 +30,19 @@ export default function BlogPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <div className="min-h-screen bg-black relative">
       {/* Scroll Progress Indicator */}
       <motion.div
         className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 to-purple-500 z-50 origin-left"
         style={{ scaleX }}
+      />
+
+      {/* Gradient Overlay - covers entire page */}
+      <motion.div
+        className="fixed inset-0 bg-gradient-to-r from-purple-900/30 to-purple-600/20 pointer-events-none"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
       />
 
       {/* Navigation */}
@@ -80,6 +88,18 @@ export default function BlogPage() {
                   transition={{ duration: 0.3 }}
                 />
               </Link>
+              <Link 
+                href="/games"
+                className="text-gray-300 hover:text-white transition-colors relative"
+              >
+                Games
+                <motion.div
+                  className="absolute bottom-0 left-0 w-full h-0.5 bg-white origin-left"
+                  initial={{ scaleX: 0 }}
+                  whileHover={{ scaleX: 1 }}
+                  transition={{ duration: 0.3 }}
+                />
+              </Link>
               <span className="text-white font-semibold">
                 Blog
               </span>
@@ -89,7 +109,7 @@ export default function BlogPage() {
       </motion.nav>
 
       {/* Main Content */}
-      <div className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
+      <div className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-6xl mx-auto">
           {/* Back Button */}
           <motion.div
@@ -179,11 +199,13 @@ export default function BlogPage() {
       </div>
 
       {/* Footer */}
-      <Footer />
+      <div className="relative z-10">
+        <Footer />
+      </div>
 
       {/* Floating elements */}
       <motion.div
-        className="absolute top-20 left-10 w-20 h-20 bg-blue-500/20 rounded-full blur-xl"
+        className="absolute top-20 left-10 w-20 h-20 bg-purple-500/30 rounded-full blur-xl"
         animate={{
           y: [0, 20, 0],
           scale: [1, 1.1, 1],
@@ -195,7 +217,7 @@ export default function BlogPage() {
         }}
       />
       <motion.div
-        className="absolute bottom-20 right-10 w-32 h-32 bg-purple-500/20 rounded-full blur-xl"
+        className="absolute bottom-20 right-10 w-32 h-32 bg-purple-400/25 rounded-full blur-xl"
         animate={{
           y: [0, -20, 0],
           scale: [1, 1.1, 1],
@@ -205,6 +227,103 @@ export default function BlogPage() {
           repeat: Infinity,
           ease: "easeInOut",
           delay: 1
+        }}
+      />
+      
+      {/* Additional floating elements */}
+      <motion.div
+        className="absolute top-32 right-20 w-16 h-16 bg-blue-500/20 rounded-full blur-lg"
+        animate={{
+          y: [0, -15, 0],
+          x: [0, 10, 0],
+          scale: [1, 1.2, 1],
+        }}
+        transition={{
+          duration: 7,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 2
+        }}
+      />
+      <motion.div
+        className="absolute top-1/3 left-5 w-12 h-12 bg-purple-600/35 rounded-full blur-md"
+        animate={{
+          y: [0, 25, 0],
+          scale: [1, 0.8, 1],
+        }}
+        transition={{
+          duration: 4,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 0.5
+        }}
+      />
+      <motion.div
+        className="absolute top-2/3 right-5 w-24 h-24 bg-indigo-500/20 rounded-full blur-xl"
+        animate={{
+          y: [0, -30, 0],
+          x: [0, -15, 0],
+          scale: [1, 1.3, 1],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 3
+        }}
+      />
+      <motion.div
+        className="absolute bottom-1/3 left-16 w-18 h-18 bg-purple-400/30 rounded-full blur-lg"
+        animate={{
+          y: [0, 20, 0],
+          x: [0, 8, 0],
+          scale: [1, 1.1, 1],
+        }}
+        transition={{
+          duration: 6,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 1.5
+        }}
+      />
+      <motion.div
+        className="absolute top-1/2 right-32 w-14 h-14 bg-violet-500/25 rounded-full blur-md"
+        animate={{
+          y: [0, -12, 0],
+          scale: [1, 1.4, 1],
+        }}
+        transition={{
+          duration: 5.5,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 4
+        }}
+      />
+      <motion.div
+        className="absolute bottom-40 left-1/4 w-10 h-10 bg-blue-400/30 rounded-full blur-sm"
+        animate={{
+          y: [0, 18, 0],
+          x: [0, -12, 0],
+          scale: [1, 0.9, 1],
+        }}
+        transition={{
+          duration: 4.5,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 2.5
+        }}
+      />
+      <motion.div
+        className="absolute top-40 left-1/3 w-22 h-22 bg-purple-300/20 rounded-full blur-lg"
+        animate={{
+          y: [0, -25, 0],
+          scale: [1, 1.2, 1],
+        }}
+        transition={{
+          duration: 7.5,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 0.8
         }}
       />
     </div>

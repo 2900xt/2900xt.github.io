@@ -57,8 +57,7 @@ export function Hero() {
             className="text-xl text-purple-100 mb-6 max-w-3xl mx-auto leading-relaxed"
             variants={fadeUpAnimation}
           >
-            I like to build things. I work on a combo of AI, ML, and low-level systems.
-          </motion.p>
+            Hi, hope you enjoy your stay!          </motion.p>
           <motion.div
             className="flex flex-wrap justify-center gap-4"
             variants={fadeUpAnimation}

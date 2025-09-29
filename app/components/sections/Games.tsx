@@ -1,99 +1,62 @@
 "use client"
 
 import { Gamepad2 } from "lucide-react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
 
-interface Technology {
-  name: string
-  color: string
-}
-
 interface GameProps {
   title: string
-  description: string
-  longDescription: string
   image: string
-  iconColor: string
-  features: string[]
-  technologies: Technology[]
+  genre: string
   onPlay: () => void
 }
 
-const colorClasses: { [key: string]: string } = {
-  blue: "bg-blue-500/20 text-blue-300 border-blue-500/30",
-  red: "bg-red-500/20 text-red-300 border-red-500/30",
-  green: "bg-green-500/20 text-green-300 border-green-500/30",
-  purple: "bg-purple-500/20 text-purple-300 border-purple-500/30",
-  orange: "bg-orange-500/20 text-orange-300 border-orange-500/30",
-  yellow: "bg-yellow-500/20 text-yellow-300 border-yellow-500/30",
-  pink: "bg-pink-500/20 text-pink-300 border-pink-500/30",
-  cyan: "bg-cyan-500/20 text-cyan-300 border-cyan-500/30"
-}
-
-function GameCard({ title, description, longDescription, image, iconColor, features, technologies, onPlay }: GameProps) {
+function GameCard({ title, image, genre, onPlay }: GameProps) {
   return (
-    <Card className="bg-gradient-to-br from-slate-800 to-slate-900 border-slate-700 hover:border-blue-500 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/20 group">
-      <div className="relative">
-        <img
-          src={image}
-          alt={title}
-          className="w-full h-48 object-cover rounded-t-lg"
-        />
-        <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
-          <Button 
-            size="sm" 
-            className="bg-black/50 hover:bg-black/70"
-            onClick={onPlay}
-          >
-            <Gamepad2 className="h-4 w-4 mr-2" />
-            Play
-          </Button>
+    <motion.div 
+      className="relative group cursor-pointer"
+      whileHover={{ scale: 1.03 }}
+      whileTap={{ scale: 0.98 }}
+      onClick={onPlay}
+    >
+      <div className="relative overflow-hidden rounded-2xl bg-black/20 backdrop-blur-sm border border-white/10 hover:border-purple-500/50 transition-all duration-300">
+        {/* Game Image */}
+        <div className="relative h-64 overflow-hidden">
+          <img
+            src={image}
+            alt={title}
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+          
+          {/* Genre Tag */}
+          <div className="absolute top-4 left-4">
+            <Badge className="bg-purple-500/80 text-white border-purple-400/50 backdrop-blur-sm">
+              {genre}
+            </Badge>
+          </div>
+
+          {/* Play Button Overlay */}
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <Button 
+              size="lg"
+              className="bg-white/20 hover:bg-white/30 backdrop-blur-md border border-white/30 text-white shadow-2xl"
+            >
+              <Gamepad2 className="h-6 w-6 mr-3" />
+              Play Game
+            </Button>
+          </div>
+
+          {/* Game Title */}
+          <div className="absolute bottom-4 left-4 right-4">
+            <h3 className="text-2xl font-bold text-white mb-1 drop-shadow-lg">
+              {title}
+            </h3>
+          </div>
         </div>
       </div>
-      <CardHeader>
-        <CardTitle className="flex items-center text-white text-xl">
-          <span className={`mr-3 h-6 w-6 ${iconColor}`}>
-            <Gamepad2 />
-          </span>
-          {title}
-        </CardTitle>
-        <CardDescription className="text-gray-300">
-          {description}
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <p className="text-gray-300 mb-4 leading-relaxed">
-          {longDescription}
-        </p>
-        {features && features.length > 0 && (
-          <div className="space-y-2 text-sm text-gray-400 mb-4">
-            {features.map((feature, index) => (
-              <div key={index}>• {feature}</div>
-            ))}
-          </div>
-        )}
-        <div className="flex flex-wrap gap-2 mb-4">
-          {technologies.map((tech, index) => (
-            <Badge
-              key={index}
-              className={colorClasses[tech.color] || colorClasses.blue}
-            >
-              {tech.name}
-            </Badge>
-          ))}
-        </div>
-        <Button 
-          className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
-          onClick={onPlay}
-        >
-          <Gamepad2 className="h-4 w-4 mr-2" />
-          Play Game
-        </Button>
-      </CardContent>
-    </Card>
+    </motion.div>
   )
 }
 
@@ -101,59 +64,18 @@ export function Games() {
   const games = [
     {
       title: "EcoSpark",
-      description: "Educational Climate Change Management Game",
-      longDescription: "Built for the 2024 Congressional App Challenge, Virginia District 10. An educational game that teaches players about climate change through city management and energy resource balancing.",
       image: "/ecoSparkPreview.png",
-      iconColor: "text-green-400",
-      features: [
-        "Educational climate change simulation",
-        "City management and energy resource balancing",
-        "Contract system with AI-powered negotiations",
-        "Research upgrades and eco-friendly housing options"
-      ],
-      technologies: [
-        { name: "C#", color: "purple" },
-        { name: "Unity", color: "blue" },
-        { name: "Game Dev", color: "green" },
-        { name: "AI", color: "orange" }
-      ]
+      genre: "Simulation"
     },
     {
       title: "plundr.io",
-      description: "Pirate-Themed Multiplayer Strategy Game",
-      longDescription: "A competitive multiplayer game where players take on the role of pirates, competing for treasure and territory in a dynamic ocean environment.",
       image: "/plundrIOPreview.png",
-      iconColor: "text-orange-400",
-      features: [
-        "Pirate-themed multiplayer gameplay",
-        "Treasure hunting and territory control",
-        "Real-time strategy elements",
-        "Competitive multiplayer mechanics"
-      ],
-      technologies: [
-        { name: "Game Dev", color: "green" },
-        { name: "Multiplayer", color: "blue" },
-        { name: "Strategy", color: "purple" }
-      ]
+      genre: "Strategy"
     },
     {
       title: "Bread to Dough",
-      description: "Bread Tycoon Game with Prestige System",
-      longDescription: "A bread tycoon game where players farm resources and build automated factories to create bread. Features a prestige system with 5 bread tiers and hand-drawn assets.",
       image: "/bread2DoughPreview.png",
-      iconColor: "text-yellow-400",
-      features: [
-        "Prestige system with 5 bread tiers",
-        "Automated bread factories",
-        "Resource farming mechanics",
-        "Hand-drawn assets and cutscenes"
-      ],
-      technologies: [
-        { name: "C#", color: "purple" },
-        { name: "Unity", color: "blue" },
-        { name: "Game Dev", color: "green" },
-        { name: "HTML", color: "orange" }
-      ]
+      genre: "Tycoon"
     }
   ]
 
@@ -183,7 +105,9 @@ export function Games() {
               transition={{ delay: index * 0.1 }}
             >
               <GameCard
-                {...game}
+                title={game.title}
+                image={game.image}
+                genre={game.genre}
                 onPlay={() => handlePlay(game.title)}
               />
             </motion.div>
