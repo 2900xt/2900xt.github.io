@@ -93,7 +93,7 @@ export function Games() {
   }
 
   return (
-    <section id="games" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-900 to-slate-800">
+    <section id="games" className="py-20 px-4 sm:px-6 lg:px-8 bg-black">
       <div className="max-w-6xl mx-auto">
 
         <div className="grid lg:grid-cols-3 gap-8">

@@ -3,7 +3,6 @@ import Image from "next/image"
 import Link from "next/link"
 
 const navItems = [
-  { href: "/projects", label: "Projects" },
   { href: "/games", label: "Games" },
   { href: "/blog", label: "Blog" }
 ]

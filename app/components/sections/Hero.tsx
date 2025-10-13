@@ -57,7 +57,7 @@ export function Hero() {
             className="text-xl text-purple-100 mb-6 max-w-3xl mx-auto leading-relaxed"
             variants={fadeUpAnimation}
           >
-            Hi, hope you enjoy your stay!          </motion.p>
+            some cool projects i've made!          </motion.p>
           <motion.div
             className="flex flex-wrap justify-center gap-4"
             variants={fadeUpAnimation}
@@ -70,9 +70,9 @@ export function Hero() {
                 asChild
                 className="bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-700 hover:to-purple-600 text-white px-8 py-3 text-lg shadow-lg hover:shadow-xl hover:shadow-purple-500/25 transition-all duration-300"
               >
-                <Link href="/projects">
+                <Link href="/games">
                   <Code className="mr-2 h-5 w-5" />
-                  Projects
+                  Games
                 </Link>
               </Button>
             </motion.div>
