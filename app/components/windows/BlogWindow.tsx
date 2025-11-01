@@ -36,6 +36,12 @@ export default function BlogWindow() {
     const loadBlogs = async () => {
       const blogs: BlogPost[] = [
         {
+          title: 'The Mom Test',
+          content: '',
+          filename: '/blogs/the-mom-test.md',
+          publishedDate: '2025-10-25'
+        },
+        {
           title: 'Meeting Literal Geniuses: ISEF 2025',
           content: '',
           filename: '/blogs/isef2025.md',
@@ -56,7 +62,7 @@ export default function BlogWindow() {
         {
           title: 'Building Cross Compilers',
           content: '',
-          filename: '/blogs/cross.md',
+          filename: '/blogs/cross-compiler.md',
           publishedDate: '2025-01-20'
         },
         {
