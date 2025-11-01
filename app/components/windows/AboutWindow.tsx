@@ -222,7 +222,7 @@ export default function AboutWindow() {
             <div className="icon small">🐙</div>
             <span>GitHub</span>
           </div>
-          <div className="contact-icon" onClick={() => window.open('https://linkedin.com/in/taharawjani')}>
+          <div className="contact-icon" onClick={() => window.open('https://www.linkedin.com/in/taha-rawjani-08959a2a0/')}>
             <div className="icon small">💼</div>
             <span>LinkedIn</span>
           </div>
