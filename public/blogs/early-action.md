@@ -26,6 +26,6 @@ Anwyays, here's what my journey looked like:
 3. *Acitivies List/Honors*. For these, I reccomend that you do a draft early on, in June/July, and then keep adding more as you apply for scholarships and awards throught the year. 
 4. *Supplemental Essays Grind, September+October*. In my opinion, these essays are the most important part of your application. If a college is **asking** you a question, they really do want to know you. You should use these to showcase parts of your personality/passions, and make sure to ANSWER THE PROMPT!!!
 
-Shoot me an email at [tahakrawjabni@gmail.com](tahakrawjani@gmail.com) if you want help or feedback on your essays. Good luck CO27!
+Shoot me an email at [tahakrawjani@gmail.com](tahakrawjani@gmail.com) if you want help or feedback on your essays. Good luck CO27!
 
 -Taha Rawjani
