@@ -36,6 +36,12 @@ export default function BlogWindow() {
     const loadBlogs = async () => {
       const blogs: BlogPost[] = [
         {
+          title: 'Early Action: Tale of a burning ship',
+          content: '',
+          filename: '/blogs/early-action.md',
+          publishedDate: '2025-11-02'
+        },
+        {
           title: 'The Mom Test',
           content: '',
           filename: '/blogs/the-mom-test.md',
@@ -188,6 +194,7 @@ export default function BlogWindow() {
                   h3: ({children}) => <h3 style={{margin: '10px 0 5px 0', fontSize: '14px'}}>{children}</h3>,
                   p: ({children}) => <p style={{margin: '8px 0', lineHeight: '1.6'}}>{children}</p>,
                   ul: ({children}) => <ul style={{margin: '5px 0', paddingLeft: '20px'}}>{children}</ul>,
+                  ol: ({children}) => <ol style={{margin: '5px 0', paddingLeft: '20px'}}>{children}</ol>,
                   code: ({children, ...props}) => 
                     <code style={{background: '#f4f4f4', padding: '2px 4px', borderRadius: '3px', fontFamily: 'monospace', fontSize: '12px'}} {...props}>{children}</code>,
                   pre: ({children}) => <pre style={{background: '#f4f4f4', padding: '10px', borderRadius: '4px', margin: '10px 0', overflowX: 'auto'}}>{children}</pre>
@@ -206,10 +213,10 @@ export default function BlogWindow() {
     <div className="window">
       <div className="window-title">Blog</div>
       <div className="window-content active">
-        <div className="stats-box" style={{ width: '100%', marginBottom: '15px' }}>
-          <div className="stats-title">Blog Posts</div>
+        <div className="stats-box" style={{ width: '100%', marginBottom: '15px', height: 'calc(100vh - 200px)', display: 'flex', flexDirection: 'column' }}>
+          <div className="stats-title" style={{ flexShrink: 0 }}>Blog Posts</div>
           
-          <div style={{ marginBottom: '15px' }}>
+          <div style={{ marginBottom: '15px', flexShrink: 0 }}>
             <input
               type="text"
               placeholder="Search blog posts..."
@@ -225,7 +232,7 @@ export default function BlogWindow() {
             />
           </div>
 
-          <div className="blog-list">
+          <div className="blog-list" style={{ flex: 1, overflowY: 'auto', paddingRight: '5px' }}>
             {filteredBlogs.length === 0 ? (
               <p style={{ textAlign: 'center', padding: '20px', color: '#666' }}>
                 No blog posts found.
