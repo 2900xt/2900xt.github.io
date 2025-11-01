@@ -9,6 +9,7 @@ interface BlogPost {
   title: string
   content: string
   filename: string
+  publishedDate: string
 }
 
 export default function BlogWindow() {
@@ -16,25 +17,54 @@ export default function BlogWindow() {
   const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null)
   const [blogs, setBlogs] = useState<BlogPost[]>([])
 
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search)
+    const blogParam = urlParams.get('blog')
+    
+    if (blogParam) {
+      const foundBlog = blogs.find(blog => 
+        blog.filename === `/blogs/${blogParam}.md` || 
+        blog.filename === `/blogs/${blogParam}`
+      )
+      if (foundBlog) {
+        setSelectedPost(foundBlog)
+      }
+    }
+  }, [blogs])
 
   useEffect(() => {
     const loadBlogs = async () => {
       const blogs: BlogPost[] = [
         {
+          title: 'Meeting Literal Geniuses: ISEF 2025',
+          content: '',
+          filename: '/blogs/isef2025.md',
+          publishedDate: '2025-05-22'
+        },
+        {
+          title: 'Getting Last in TSA: VA Technosphere 2025',
+          content: '',
+          filename: '/blogs/tsa-last.md',
+          publishedDate: '2025-05-05'
+        },
+        {
           title: 'Create your own Bootsector OS',
           content: '',
-          filename: '/blogs/bootsector-fundamentals.md'
+          filename: '/blogs/bootsector-fundamentals.md',
+          publishedDate: '2025-02-10'
         },
         {
           title: 'Building Cross Compilers',
           content: '',
-          filename: '/blogs/cross.md'
+          filename: '/blogs/cross.md',
+          publishedDate: '2025-01-20'
         },
         {
           title: 'Page Frame Allocation',
           content: '',
-          filename: '/blogs/page-frame-allocator.md'
-        }
+          filename: '/blogs/page-frame-allocator.md',
+          publishedDate: '2024-12-05'
+        },
       ]
 
       try {
@@ -47,14 +77,16 @@ export default function BlogWindow() {
               return {
                 title: blog.title,
                 content,
-                filename: blog.filename
+                filename: blog.filename,
+                publishedDate: blog.publishedDate
               } as BlogPost
             } catch (err) {
               console.error('Failed to load', blog.filename, err)
               return {
                 title: blog.title,
                 content: 'Failed to load content.',
-                filename: blog.filename
+                filename: blog.filename,
+                publishedDate: blog.publishedDate
               } as BlogPost
             }
           })
@@ -75,6 +107,29 @@ export default function BlogWindow() {
     blog.content.toLowerCase().includes(searchTerm.toLowerCase())
   )
 
+  const handleBlogSelect = (blog: BlogPost) => {
+    setSelectedPost(blog)
+    const blogId = blog.filename.replace('/blogs/', '').replace('.md', '')
+    const newUrl = `${window.location.pathname}?blog=${blogId}`
+    window.history.pushState({}, '', newUrl)
+  }
+
+  const handleBackToList = () => {
+    setSelectedPost(null)
+    const newUrl = window.location.pathname
+    window.history.pushState({}, '', newUrl)
+  }
+
+  const handleShareBlog = async () => {
+    const currentUrl = window.location.href
+    try {
+      await navigator.clipboard.writeText(currentUrl)
+      alert('Blog URL copied to clipboard!')
+    } catch (err) {
+      alert(`Share this blog: ${currentUrl}`)
+    }
+  }
+
 
   if (selectedPost) {
     return (
@@ -82,20 +137,32 @@ export default function BlogWindow() {
         <div className="window-title">Blog - {selectedPost.title}</div>
         <div className="window-content active">
           <div className="stats-box" style={{ width: '100%', marginBottom: '15px', height: 'calc(100vh - 200px)', display: 'flex', flexDirection: 'column' }}>
-            <button 
-              onClick={() => setSelectedPost(null)}
-              style={{ 
-                marginBottom: '10px', 
-                padding: '5px 10px', 
-                background: '#333', 
-                color: 'white', 
-                border: 'none', 
-                cursor: 'pointer',
-                flexShrink: 0
-              }}
-            >
-              ← Back to Blog List
-            </button>
+            <div style={{ display: 'flex', gap: '10px', marginBottom: '10px', flexShrink: 0 }}>
+              <button 
+                onClick={handleBackToList}
+                style={{ 
+                  padding: '5px 10px', 
+                  background: '#333', 
+                  color: 'white', 
+                  border: 'none', 
+                  cursor: 'pointer'
+                }}
+              >
+                ← Back to Blog List
+              </button>
+              <button 
+                onClick={handleShareBlog}
+                style={{ 
+                  padding: '5px 10px', 
+                  background: '#007acc', 
+                  color: 'white', 
+                  border: 'none', 
+                  cursor: 'pointer'
+                }}
+              >
+                📋 Share
+              </button>
+            </div>
             <div 
               style={{ 
                 flex: 1,
@@ -161,7 +228,7 @@ export default function BlogWindow() {
               filteredBlogs.map((blog, index) => (
                 <div 
                   key={index}
-                  onClick={() => setSelectedPost(blog)}
+                  onClick={() => handleBlogSelect(blog)}
                   style={{
                     padding: '10px',
                     border: '1px solid #ddd',
@@ -172,7 +239,9 @@ export default function BlogWindow() {
                   }}
                 >
                   <h3 style={{ margin: '0 0 5px 0', fontSize: '16px' }}>{blog.title}</h3>
-                  <p style={{ margin: '0', color: '#666', fontSize: '12px' }}>{blog.filename}</p>
+                  <p style={{ margin: '0', color: '#666', fontSize: '12px' }}>
+                    {new Date(blog.publishedDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                  </p>
                 </div>
               ))
             )}
