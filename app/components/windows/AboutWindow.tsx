@@ -177,7 +177,7 @@ export default function AboutWindow() {
             <div className="stats-title">System Information</div>
             <div className="stats-row">
               <div className="stats-label">Operating System:</div>
-              <div>NietzscheOS</div>
+              <div>Arch Linux :D</div>
             </div>
             <div className="stats-row">
               <div className="stats-label">Primary Languages:</div>
