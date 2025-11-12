@@ -1,4 +1,5 @@
 import './globals.css'
+import { Analytics } from '@vercel/analytics/next';
 
 export const metadata = {
   title: 'Taha Rawjani - Portfolio',
@@ -13,6 +14,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>{children}</body>
+      <Analytics/>
     </html>
   )
 }
