@@ -33,7 +33,7 @@ export default function Sidebar({ side, activeWindow, setActiveWindow }: Sidebar
   }
 
   const handleBooksClick = () => {
-    alert('📚 Current Reading List:\n\n• The Mom Test by Rob Fitzpatrick\n• Zero to One by Peter Thiel')
+    alert('📚 Current Reading List:\nThe Subtle Art of not Giving a Fuck\n\n• The Mom Test\n• Zero to One\n')
   }
 
   const handleResumeClick = () => {
